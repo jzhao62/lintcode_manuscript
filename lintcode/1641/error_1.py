@@ -37,13 +37,13 @@ class UnionFind:
         return self.father[x]
 
     def merge(self, x, y):
-        parent_a = self.find(x)
-        parent_b = self.find(y)
+        x = self.find(x)
+        y = self.find(y)
 
-        if parent_a == parent_b: return
-
-        self.merge_cnt += 1
+        if x == y: return
         self.father[x] = y
+        self.merge_cnt += 1
+
 
 mp = [[1, 1, 1, 1], [1, 1, 0, 1], [1, 0, 1, 0]]
 
