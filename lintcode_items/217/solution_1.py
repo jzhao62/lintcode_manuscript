@@ -1,4 +1,4 @@
-from data_structures.ListNode import *
+from lintcode.ListNode import *
 
 
 class Solution:

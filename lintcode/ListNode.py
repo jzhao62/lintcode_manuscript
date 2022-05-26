@@ -16,10 +16,3 @@ def serialize_to_listNode(serialized_list_nodes):
         p = p.next
 
     return dummy.next
-
-
-input = "1->2->1->3->3->5->6->3->null"
-
-head = serialize_to_listNode(input)
-
-print(head)
