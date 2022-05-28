@@ -27,6 +27,8 @@ class Solution:
             active_user += delta
             last_timestamp = timestamp
 
+        return interval
+
     def merge(self, interval, start, end):
         if start is None:
             return
