@@ -23,7 +23,7 @@ class MyCalendarTwo:
             if cnt >= 3:
                 self.record[start] -= 1
                 self.record[end] += 1
-            return False;
+                return False;
 
         return True;
 
