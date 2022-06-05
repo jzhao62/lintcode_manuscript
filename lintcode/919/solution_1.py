@@ -1,4 +1,4 @@
-from lintcode.intervals import Interval
+from lintcode.lintcode import Interval
 
 
 class Solution:

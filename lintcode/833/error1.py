@@ -2,7 +2,7 @@ from typing import (
     List,
 )
 from lintcode import (
-    Interval,
+    lintcode,
 )
 
 
