@@ -27,7 +27,9 @@ class Trie:
         for c in word:
             if c not in node.children:
                 node.children[c] = TrieNode()
-                node = node.children[c]
+
+        # 任何情况下都要执行 node = node.children[c], 所以放在 if 外面
+            node = node.children[c]
             node.prefix_cnt +=1
 
         node.is_word = True
