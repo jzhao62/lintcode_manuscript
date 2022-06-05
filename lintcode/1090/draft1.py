@@ -24,8 +24,13 @@ class Trie:
 
     def find_last(self, prefix):
         node = self.root
-        for i in range(len(prefix)-1):
-            node = node.children.get(prefix[i])
+        # 这里，例如 prefix = app, word = [apple, app]
+        for c in prefix:
+            node = node.children.get(c)
+            if node is None:
+                return None;
+
+        # 这里返回的node是第一个p
 
         return node
 
@@ -65,5 +70,5 @@ class MapSum:
 s = MapSum()
 s.insert("apple", 3)
 s.sum("ap")
-s.insert("app", 2)
+s.insert("ap", 2)
 s.sum("ap")
