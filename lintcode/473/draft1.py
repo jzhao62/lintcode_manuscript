@@ -38,9 +38,18 @@ class WordDictionary:
             return root.is_word
         c = word[i]
         if c != '.':
-            return self.dfs(root.children[c], word, i + 1)
+            # 使用get c 来避免 key 不存在而出现exception的情况
+            return self.dfs(root.children.get(c), word, i + 1)
 
         for node in root.children:
             if self.dfs(root.children[node], word, i + 1): return True
 
         return False;
+
+
+d = WordDictionary()
+
+print(d.search("lintcode"))
+print(d.search("lint"))
+print(d.addWord("lint"))
+print(d.search("lint"))
