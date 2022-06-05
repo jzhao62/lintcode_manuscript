@@ -22,7 +22,7 @@ class Trie:
     def find(self, word):
         node = self.root
         for c in word:
-            node = node.children[c]
+            node = node.children.get(c)
             if node is None:
                 return None
 
