@@ -20,13 +20,12 @@ class Trie:
 
         node.val = val
         node.word = word
+        node.is_word = True
 
     def find_last(self, prefix):
         node = self.root
-        for c in prefix:
-            node = node.children.get(c)
-            if node is None:
-                return None
+        for i in range(len(prefix)-1):
+            node = node.children.get(prefix[i])
 
         return node
 
@@ -59,8 +58,8 @@ class MapSum:
         if node.is_word:
             result.append(node.val)
 
-        for node in node.children:
-            self.dfs(node.children[node], result)
+        for next_node in node.children:
+            self.dfs(node.children.get(next_node), result)
 
 
 s = MapSum()
