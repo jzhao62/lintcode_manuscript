@@ -6,7 +6,8 @@ class Solution:
         return self.dfs(trie.root)
 
     def dfs(self, node):
-        if not node.children or node.is_word:
+        # 只有在叶子节点的时候(没有children， 而且node.is_word)
+        if not node.children and node.is_word:
             return len(node.word) + 1
 
         cnt = 0
@@ -31,9 +32,15 @@ class Trie:
         node = self.root
 
         for c in word:
-            if c not in node:
+            # 熟练了就不会写错了
+            if c not in node.children:
                 node.children[c] = TrieNode()
             node = node.children[c]
 
         node.is_word = True
         node.word = word
+
+
+words =  ["time", "me", "bell"]
+
+print(Solution().minimum_length_encoding(words))
