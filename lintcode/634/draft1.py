@@ -13,8 +13,7 @@ class TrieNode:
 class Trie:
     def __init__(self):
         self.root = TrieNode()
-
-    def add(self, word):
+    def insert(self, word):
         node = self.root
         for c in word:
             if c not in node.children:
@@ -28,42 +27,52 @@ class Trie:
         for c in word:
             node = node.children.get(c)
             if node is None:
-                return None
+                return None;
         return node
 
-    def get_words_with_prefix(self, prefix):
-        node = self.find(prefix)
+    def get_words_with_prefix(self, word):
+        node = self.find(word)
         return [] if node is None else node.word_list
 
-    def contains(self, word):
-        node = self.find(word)
-        return node is not None and node.is_word
 
 
 class Solution:
     def word_squares(self, words):
         trie = Trie()
         for word in words:
-            trie.add(word)
+            trie.insert(word)
         squares = []
         for word in words:
             self.search(trie, [word], squares)
         return squares
 
-    def search(self, trie, square, squares):
-        n = len(square[0])
-        curt_index = len(square)
-        if curt_index == n:
-            squares.append(list(square))
-            return
-        # # Pruning, it's ok to remove it, but will be slower
-        # for row_index in range(curt_index, n):
-        #     prefix = ''.join([square[i][row_index] for i in range(curt_index)])
-        #     if trie.find(prefix) is None:
-        #         return
+    def search(self, trie, path, output):
+        n = len(path[0])
+        idx = len(path)
 
-        prefix = ''.join([square[i][curt_index] for i in range(curt_index)])
-        for word in trie.get_words_with_prefix(prefix):
-            square.append(word)
-            self.search(trie, square, squares)
-            square.pop()  # remove the last word
+        if idx == n:
+            output.append(list(path))
+            return;
+
+        for row_idx in range(idx, n):
+            prefix = "".join([path[i][row_idx] for i in range(idx)])
+            if trie.find(prefix) is None:
+                return;
+
+        prefix = "".join([path[i][idx] for i in range(idx)])
+
+        for w in trie.get_words_with_prefix(prefix):
+            path.append(w)
+            self.search(trie, path, output)
+            path.pop()
+
+
+
+
+
+
+
+words = ["area","lead","wall","lady","ball"]
+
+
+output = Solution().word_squares(words)
