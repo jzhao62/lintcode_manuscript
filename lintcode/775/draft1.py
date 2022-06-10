@@ -38,7 +38,8 @@ class Solution:
 
         for i in range(len(words)):
             w = words[i]
-            trie.insert(w, i)
+            # 一定要反向insert
+            trie.insert(w[::-1], i)
 
         for idx in range(len(words)):
             w = words[idx]
@@ -49,7 +50,8 @@ class Solution:
 
                 p1 = trie.find_pattern(left_part)
                 p2 = trie.find_pattern(right_part)
-                if p1 != -1 and p1 != idx and self.is_palindrome(right_part):
+                # 需要剔除right_part == "" 的情况
+                if p1 != -1 and p1 != idx and self.is_palindrome(right_part) and right_part != "":
                     output.append([p1, idx])
                 if p2 != -1 and p2 != idx and self.is_palindrome(left_part):
                     output.append([idx, p2])
