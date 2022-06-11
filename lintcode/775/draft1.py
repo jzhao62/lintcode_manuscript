@@ -52,16 +52,18 @@ class Solution:
                 p2 = trie.find_pattern(right_part)
                 # 需要剔除right_part == "" 的情况
                 if p1 != -1 and p1 != idx and self.is_palindrome(right_part) and right_part != "":
-                    output.append([p1, idx])
+                    output.append([idx, p1])
                 if p2 != -1 and p2 != idx and self.is_palindrome(left_part):
-                    output.append([idx, p2])
+                    print(left_part, right_part)
+                    output.append([p2, idx])
 
         return output
 
 
 
 
-input = ["bat", "tab", "cat"]
+input = ["abcd","dcba","lls","s","sssll"]
+
 
 output = Solution().palindrome_pairs(input)
 
