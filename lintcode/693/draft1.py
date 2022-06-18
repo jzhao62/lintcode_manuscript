@@ -5,7 +5,8 @@ class Solution:
         quota = k
 
         for c in num:
-            while stack and int(c) < int(stack[-1]):
+            # quota > 0
+            while stack and quota > 0 and int(c) < int(stack[-1]):
                 stack.pop()
                 quota -= 1
 
