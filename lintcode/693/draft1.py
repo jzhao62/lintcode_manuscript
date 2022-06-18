@@ -16,13 +16,14 @@ class Solution:
             stack.pop()
             quota -= 1
 
-        return "".join(stack)
+
+        return "".join(stack).lstrip('0') or "0"
 
 
 
 
-num = "1432219"
-k = 3
+num = "637824056"
+k = 8
 
 
 x = Solution().remove_kdigits(num, k)
