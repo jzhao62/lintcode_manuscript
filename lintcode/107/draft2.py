@@ -18,7 +18,7 @@ class Solution:
 
         for i in range(1, n+1):
             for l in range(1, max_length + 1):
-                if dp[i-l] and s[i-l: l] in word_set:
+                if dp[i-l] and s[i-l: i] in word_set:
                     dp[i] = True;
                     break;
         return dp[-1]
