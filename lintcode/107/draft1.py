@@ -14,10 +14,14 @@ class Solution:
         dp = [False] * (n+1)
 
 
+        # 预先留一个0 号位，set to True
+        dp[0] = True
+
+
         for i in range(1, n+1):
             for w in word_set:
-                if dp[i-len(w)] and s[i-len(w): len(w)+1] in word_set:
-                    return True;
+                if dp[i-len(w)] and s[i-len(w): i] == w:
+                    dp[i] = True
                     break;
 
         return dp[-1]
