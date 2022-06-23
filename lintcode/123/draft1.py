@@ -42,12 +42,12 @@ class Solution:
         tree = TrieTree()
         tree.add(word)
 
-        n, m = len(board) - 1, len(board[0]) - 1
+        n, m = len(board), len(board[0])
 
         for i in range(n):
             for j in range(m):
                 c = board[i][j]
-                if self.dfs(board, tree.root.children.get(c), i, j, set((i, j))):
+                if self.dfs(board, tree.root.children.get(c), i, j, set([(i, j)])):
                     return True;
 
         return False;
@@ -57,9 +57,10 @@ class Solution:
         if node.is_word: return True;
 
         for dx, dy in DIRECTION:
-            if not self.in_bound(board, x, y, visited): continue
+            if not self.in_bound(board, x + dx, y + dy, visited): continue
             visited.add((x + dx, y + dy))
-            self.dfs(board, node.children.get(board[x + dx][y + dy]), x + dx, y + dy, visited)
+            if self.dfs(board, node.children.get(board[x + dx][y + dy]), x + dx, y + dy, visited):
+                return True
             visited.remove((x + dx, y + dy))
 
     def in_bound(self, board, i, j, visited):
@@ -71,5 +72,5 @@ class Solution:
 
 
 board = ["ABCE", "SFCS", "ADEE"]
-
-ret = Solution().exist()
+word = "ABCCED"
+ret = Solution().exist(board, word)
